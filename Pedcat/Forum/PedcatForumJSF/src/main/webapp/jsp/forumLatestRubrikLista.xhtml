@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+
+
+	<META NAME="AUTHOR" CONTENT="Lars Hagrot, Pedcat"/>
+	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"/>
+	<META HTTP-EQUIV="EXPIRES" CONTENT="0" />
+	<META NAME="KEYWORDS" CONTENT="Sundbybergs IK Forum" />
+	<link rel="stylesheet"
+		href="#{facesContext.externalContext.requestContextPath}/css/forum.css"
+		type="text/css"></link>
+</h:head>
+<h:body style="{background-color:#EFEFEF;padding:0 0 0 0;}">
+	<f:view>
+		<h:form>
+			<h:panelGrid columns="1" width="230px">
+				<p:dataTable var="message"
+					value="#{forumJSFBean.latestForumMessageHeaders}"
+					rowClasses="evenRow,oddRow" width="220px">
+					<h:column>
+						<h:panelGrid columns="1" width="100%">
+							<h:commandLink onclick="show('#{facesContext.externalContext.requestContextPath}/forumRubrikLista.jsf?objectId=#message.objectId')">
+								<h:outputText styleClass="messageBody"
+									value="#{message.rubrikShort}" />
+								<h:outputText styleClass="messageBody"
+									value="#{message.userName} #{message.datumAsString}" />
+								<h:outputText styleClass="messageBody"
+									value="Antal svar:#{message.antalSvar} Läst:#{message.readCount}" />
+							</h:commandLink>	
+						</h:panelGrid>
+					</h:column>
+				</p:dataTable>
+			</h:panelGrid>
+		</h:form>
+	</f:view>
+
+</h:body>
+</html>

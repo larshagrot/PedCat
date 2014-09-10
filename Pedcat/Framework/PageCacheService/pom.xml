@@ -1,0 +1,63 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>PageCacheService</artifactId>
+    <groupId>se.pedcat.framework</groupId>
+    <packaging>jar</packaging>
+    <version>1.0</version>
+	
+    <description>OEF</description>
+
+    <parent>
+        <groupId>se.pedcat.framework</groupId>
+        <artifactId>SuperPom</artifactId>
+        <version>1.0</version>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>javax.ejb</groupId>
+            <artifactId>ejb-api</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.ejb3</groupId>
+            <artifactId>jboss-ejb3-ext-api</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.javaee</groupId>
+                    <artifactId>jboss-ejb-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.metadata</groupId>
+                    <artifactId>jboss-metadata</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+
+		
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>jsr250-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>se.pedcat.framework</groupId>
+            <artifactId>PageCache</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>se.pedcat.framework</groupId>
+            <artifactId>PageCacheModel</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
+
+
+</project>
+

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping 
+    package="se.pedcat.forum.model"  
+    default-lazy="false"
+    default-cascade="all"
+    default-access="property">  
+
+  <class name="Arrangemang" table="tb_arrangemang">
+	<cache usage="read-write"/>  
+    <id name="objectId" column="arrangemang_id">
+    	<generator class="uuid"/>
+    </id>
+    <property name="namn"/>
+    <property name="beskrivning"/>
+    <property name="kontaktperson"/>
+    <property name="telefon"/>
+    <property name="epost"/>
+    <property name="anmalan"/>
+    <property name="url"/>
+   	<property name="plats"/>
+    <property name="start" type="timestamp"/>
+    <property name="datum" type="timestamp"/>
+    <property name="senast" type="timestamp"/>
+    <property name="foreningId" column="forening_id"/>
+  </class>  
+
+</hibernate-mapping>
+        
+
+

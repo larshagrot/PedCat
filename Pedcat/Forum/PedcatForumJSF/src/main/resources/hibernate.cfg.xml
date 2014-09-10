@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+  <session-factory>
+
+    
+	<property name="connection.datasource">java:comp/env/jdbc/paasclouddb</property>
+    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+ 
+    
+    <!-- batch parameters -->
+    <property name="hibernate.jdbc.batch_size">10</property>
+
+    <property name="hibernate.show_sql">false</property>
+    <property name="hibernate.format_sql">false</property>
+    <property name="hibernate.use_sql_comments">false</property>
+    <property name="hibernate.hbm2ddl.auto" >create</property> 
+    
+    
+    <!--  Cache settings -->
+	<property name="hibernate.cache.use_second_level_cache">false</property> 
+	
+     
+    <!-- Mappings -->
+    <mapping resource="ForumMessage.hbm.xml"/>    
+	<mapping resource="Medlem.hbm.xml"/>
+	<mapping resource="Arrangemang.hbm.xml"/>
+	<mapping resource="Forening.hbm.xml"/>
+	<mapping resource="Funktionar.hbm.xml"/>    
+	    
+	    
+	    
+	
+    
+  </session-factory>
+</hibernate-configuration>
+
+
+

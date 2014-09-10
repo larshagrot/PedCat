@@ -1,0 +1,1 @@
+Generella klasser. Basklasser eller utilityklasser

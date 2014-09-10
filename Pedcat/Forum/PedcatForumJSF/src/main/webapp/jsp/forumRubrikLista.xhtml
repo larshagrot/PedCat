@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui" >
+
+    <f:view>
+        <h:head>
+            <title>Sundbybergs IK Skidor</title>
+            <META NAME="AUTHOR" CONTENT="Lars Hagrot Pedcat"/>
+            <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"/>
+            <META HTTP-EQUIV="EXPIRES" CONTENT="0"/>
+            <META NAME="KEYWORDS" CONTENT="Sundbybergs IK Forum"/>
+
+            <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/forum.css" type="text/css"></link>
+            <script src="#{facesContext.externalContext.requestContextPath}/script/forum.js"></script>
+        </h:head>
+        <h:body style="background-color:#EFEFEF;padding:0 0 0 0;">
+            <h:form prependId="false">
+                <p:themeSwitcher initialText="Byt tema" buttonPreText="Tema "/>
+                <h:panelGrid columns="1" width="900px" border="0"    headerClass="header">
+                    <h:panelGrid id="messagePanel" columns="1"  width="100%">
+                        <p:dialog modal="true" widgetVar="messagePanelDlg" 
+                                  showEffect="bounce" 
+                                  hideEffect="explode" 
+                                  position="'left','top'" zindex="1000"  width="500">
+                          <p:panel header="Inlägg" rendered="#{forumJSFBean.hasMessage}">
+                                <h:panelGrid columns="1">
+                                    <h:panelGrid columns="2" columnClasses="valign,valign">
+                                        <h:panelGrid columns="1">
+                                        <h:outputLabel  value="Namn"></h:outputLabel>
+                                        <h:inputText  id="userName" size="40" value="#{forumJSFBean.currentForumMessage.userName}">
+
+                                        </h:inputText>
+
+                                        <h:outputLabel  value="Epost"></h:outputLabel>
+                                        <h:panelGroup>
+                                            <h:inputText  size="40"  
+                                                          id="epost" 
+                                                          value="#{forumJSFBean.currentForumMessage.epost}">
+                                            </h:inputText>
+
+                                            <f:verbatim><br/></f:verbatim>
+                                            <h:message style="color:red;" for="epost"></h:message>
+                                        </h:panelGroup>
+                                        <h:outputLabel value="Rubrik"></h:outputLabel>
+                                        <h:inputText 
+                                            readonly="#{forumJSFBean.currentForumMessage.reply}"  size="40" id="rubrik" value="#{forumJSFBean.currentForumMessage.rubrik}" />
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="1">
+                                            <p:commandButton oncomplete="messagePanelDlg.hide();" update="messagePanel currentMessage messageHeaders" tabindex="99" value="Skicka" onclick="javascript: if (!validate()) return false" action="#{forumJSFBean.save}"  ></p:commandButton>
+                                            <p:commandButton oncomplete="messagePanelDlg.hide();" update="messagePanel currentMessage messageHeaders" tabindex="100" value="Avbryt" action="#{forumJSFBean.cancel}"  ></p:commandButton>
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+
+                                    <h:outputLabel value="Text (max 2000 tecken)"></h:outputLabel>
+                                    <h:inputTextarea  id="message" 
+                                                      value="#{forumJSFBean.currentForumMessage.message}" 
+                                                      cols="55" rows="12">
+                                    </h:inputTextarea>
+                                </h:panelGrid>
+                        </p:panel>
+                        </p:dialog>    
+                        <h:panelGrid columns="1" rendered="#{true || !forumJSFBean.hasMessage}">
+                            <p:commandButton oncomplete="messagePanelDlg.show();" 
+                                             update="messagePanel currentMessage" 
+                                             value="Skriv ett nytt inlägg!" 
+                                             action="#{forumJSFBean.nytt}"  ></p:commandButton>
+                        </h:panelGrid>
+
+                    </h:panelGrid>
+
+                    <h:panelGrid id="messageHeaders" 
+                                 columns="2" 
+                                 width="100%" 
+                                 columnClasses="p450p,p450p" >
+
+
+                        <p:dataTable
+                            pageLinks="6"
+                            paginator="true" 
+                            var="message" 
+                            value="#{forumJSFBean.forumMessageHeaders}" 
+                            rows="10"  
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                            rowsPerPageTemplate="5,10,15,20,25,50,100"
+
+
+                            >
+                            <p:column>
+                                <h:panelGrid columns="1" width="100%" >
+                                    <p:commandLink update="currentMessage messagePanel messageHeaders" action="#{forumJSFBean.showThread}">
+                                        <h:outputText   value="#{message.userName}:#{message.rubrik}"/>
+                                        <f:setPropertyActionListener target="#{forumJSFBean.currentMessageId}" value="#{message.objectId}" />
+                                    </p:commandLink>
+                                    <h:outputText   value="#{message.datumAsString}"/>
+                                    <h:outputText   value="Antal svar:#{message.antalSvar} Läst:#{message.readCount}"/>
+                                </h:panelGrid> 
+
+                            </p:column>			
+                        </p:dataTable>
+
+                        <h:panelGrid rendered="#{!forumJSFBean.hasCurrentThread}" width="100%">
+                            <f:verbatim>
+                                <div style="font-size:10p;font-family:Verdana,sans-serif;color:#008000;">
+                                    
+                                </div>	  
+                            </f:verbatim>
+                        </h:panelGrid>
+                        <h:panelGroup id="currentMessage" >    
+                            <p:dataTable 	var="message" 
+                                          value="#{forumJSFBean.forumThreadMessages}" 
+
+                                          rendered="#{forumJSFBean.hasCurrentThread}"
+                                          style="width:100%"
+
+                                          >
+                                <f:facet name="header">
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel   value="#{forumJSFBean.currentThread.rubrik}"/>
+                                        <p:commandButton style="float:right;" oncomplete="messagePanelDlg.show();" update="messagePanel currentMessage" value="Kommentera"  action="#{forumJSFBean.kommentera}">
+                                            <f:setPropertyActionListener target="#{forumJSFBean.currentMessageId}" value="#{forumJSFBean.currentThread.objectId}" />
+                                        </p:commandButton>
+                                    </h:panelGrid>
+                                </f:facet>					
+                                <p:column>
+                                    <h:panelGrid columns="1" width="100%" >
+                                        <h:panelGrid columns="3" columnClasses="left,right" width="100%">
+                                            <h:outputText value="#{message.userName}" />
+                                            <h:panelGroup>
+                                                <h:outputText style="color:red"  rendered="#{message.registered}" value="Inlägget är anmält " />
+                                                <h:outputText title="IP #{message.ip}" value="#{message.datumAsString}" />
+                                                <p:commandLink update="messagePanel currentMessage"  rendered="#{forumJSFBean.ip == message.ip || forumJSFBean.loggedIn}" action="#{forumJSFBean.update}">
+                                                    <h:outputText value=" ändra "/>
+                                                    <f:setPropertyActionListener target="#{forumJSFBean.currentMessageId}" value="#{message.objectId}" />
+                                                </p:commandLink>
+                                                <p:commandLink update="messagePanel currentMessage" rendered="#{forumJSFBean.ip == message.ip || forumJSFBean.loggedIn}" immediate="true" action="#{forumJSFBean.delete}">
+                                                    <h:outputText value=" Ta bort "/>
+                                                    <f:setPropertyActionListener target="#{forumJSFBean.currentMessageId}" value="#{message.objectId}" />
+                                                </p:commandLink>
+                                                <p:commandLink update="messagePanel currentMessage"  action="#{forumJSFBean.register}">
+                                                    <h:outputText value=" Anmäl"/>
+                                                    <f:setPropertyActionListener target="#{forumJSFBean.currentMessageId}" value="#{message.objectId}" />
+                                                </p:commandLink>
+                                            </h:panelGroup>  
+                                        </h:panelGrid>
+                                        <p:inputTextarea 
+                                            rendered="#{!message.html}"  
+                                            styleClass="messageBody" 
+                                            readonly="true" 
+                                            value="#{message.message}" cols="65" rows="20">
+                                        </p:inputTextarea>
+                                        <h:outputText rendered="#{message.html}" escape="#{message.html}" styleClass="messageBody"  value="#{message.message}"/>
+
+                                    </h:panelGrid>
+                                </p:column>
+                            </p:dataTable>
+                        </h:panelGroup>        
+                    </h:panelGrid>
+                </h:panelGrid>
+       
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

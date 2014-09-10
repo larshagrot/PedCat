@@ -1,0 +1,18 @@
+<Context reloadable="true" antiResourceLocking="true"> 
+
+	<!--  
+	<Resource name="jdbc/earkiv" auth="Container"
+            factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+            type="javax.sql.DataSource" username="sllearkiv" password="sllearkiv"
+            driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/earkiv_inleverans?useUnicode=true&amp;characterEncoding=UTF-8&amp;useServerPrepStmts=false" defaultAutoCommit="true"
+            maxActive="100" maxIdle="30" maxWait="10000"/>
+
+	<Resource name="jdbc/earkivNonTx" auth="Container"
+            factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+            type="javax.sql.DataSource" username="sllearkiv" password="sllearkiv"
+            driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/earkiv_inleverans?useUnicode=true&amp;characterEncoding=UTF-8&amp;useServerPrepStmts=false" defaultAutoCommit="true" 
+            maxActive="20" maxIdle="30" maxWait="10000"/>
+	-->
+
+</Context>
+

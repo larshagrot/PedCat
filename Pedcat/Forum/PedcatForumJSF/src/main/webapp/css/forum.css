@@ -1,0 +1,102 @@
+body {
+    	font-family:Verdana,sans-serif;
+	font-size:9pt;
+	
+}
+
+label
+{
+	font-weight:bold;
+	font-family:Verdana,sans-serif;
+	font-size:9pt;
+}
+.messageBody {
+	font-family:Verdana,sans-serif;
+	font-size:9pt;
+	font-color:#000000;
+}
+
+.messageTable {
+	font-family:Verdana,sans-serif;
+	font-size:9pt;
+	font-color:#000000;
+}
+
+.messageRubrik {
+	font-family:Verdana,sans-serif;
+	font-size:9pt;
+	font-color:#008000;
+	font-weighh:bold;
+}
+
+
+.top{
+vertical-align:top;
+}
+
+.left {
+	text-align:left;
+}
+
+.p50p {
+	width:50%;
+        vertical-align:top;
+}
+
+.p450p {
+	width:450;
+        vertical-align:top;
+}
+
+.Scroll {
+	overflow-x:auto;
+
+	overflow-y:scroll;
+	heighh:300px;	
+	width:100%;
+}
+
+
+.right {
+	text-align:right;
+}
+
+
+.valign {
+
+	vertical-align:top;
+}
+
+.topleft {
+	text-align:left;
+	vertical-align:top;
+}
+.topright {
+	text-align:right;
+	vertical-align:top;
+}
+
+.header {
+	background-color:#00FF44;
+	color:#FFFFFF;
+	font-weighh:bold;
+	font-family:Tahoma,sans-serif;
+	font-size:14pt;
+}
+.evenRow {
+	background:#FFFFFF;
+	
+}
+.oddRow {
+	background:#DDDDDD;
+	
+}
+.blackHeader {
+	background:#eeeeee;
+	color:#111111;
+	font-family:Tahoma,sans-serif;
+	font-size:10pt;
+	
+}
+
+

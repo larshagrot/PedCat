@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping 
+    package="se.pedcat.forum.model"  
+    default-lazy="false"
+    default-cascade="all"
+    default-access="property">  
+
+  <class name="Funktionar" table="tb_funktionar">
+	<cache usage="read-write"/>  
+    <id name="objectId" column="funktionar_id">
+    	<generator class="uuid"/>
+    </id>
+    <property name="arrangemangId" column="arrangemang_id"/>
+    <property name="medlemId" column="medlem_id"/>
+    <property name="funktion" />
+  </class>  
+
+</hibernate-mapping>
+        
+
+

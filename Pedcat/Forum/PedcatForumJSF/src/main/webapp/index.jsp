@@ -1,0 +1,1 @@
+<jsp:forward page="jsp/forumRubrikLista.jsf" ></jsp:forward>

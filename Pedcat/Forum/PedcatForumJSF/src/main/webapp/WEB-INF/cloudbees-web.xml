@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<cloudbees-web-app xmlns="http://www.cloudbees.com/xml/webapp/1">
+	<appid>larshagrot/pedcatforumjsf</appid>
+	<context-param>
+		<param-name>application.environment</param-name>
+		<param-value>local</param-value>
+	</context-param>
+	<resource name="jdbc/paasclouddb" auth="Container" type="javax.sql.DataSource">
+		<param name="username" value="larshagrot" />
+		<param name="password" value="larshagrot" />
+		<param name="url" value="jdbc:cloudbees://paasclouddb" />
+	</resource>
+	<environment name="local">
+		<context-param>
+			<param-name>mypassword</param-name>
+			<param-value>LOCAL_PASSWORD</param-value>
+		</context-param>
+		<resource name="jdbc/paasclouddb" auth="Container" type="javax.sql.DataSource">
+			<!--  <param name="username" value="root" />
+			<param name="password" value="DB_PASS" />-->
+			<param name="url" value="jdbc:derby:paasclouddb;create=true" />
+			<param name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver" />
+		</resource>
+	</environment>
+
+</cloudbees-web-app>

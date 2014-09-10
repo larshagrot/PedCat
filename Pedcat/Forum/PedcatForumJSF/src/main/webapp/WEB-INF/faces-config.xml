@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+        version="2.0">
+    <application>        
+        <locale-config>            
+            <default-locale>sv</default-locale>            
+        </locale-config>
+        <!-- <message-bundle>se.r7earkiv.common.messages.r7earkiv_messages</message-bundle>-->
+        <message-bundle>se.pedcat.forum.messages.messages</message-bundle>
+    </application>
+	<managed-bean>
+		<managed-bean-name>forumJSFBean</managed-bean-name>
+		<managed-bean-class>se.pedcat.forum.web.jsfbean.ForumJSFBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+    <managed-bean>
+		<managed-bean-name>medlemJSFBean</managed-bean-name>
+		<managed-bean-class>se.pedcat.forum.web.jsfbean.MedlemJSFBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+    <managed-bean>
+		<managed-bean-name>arrangemangJSFBean</managed-bean-name>
+		<managed-bean-class>se.pedcat.forum.web.jsfbean.ArrangemangJSFBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+    
+    
+  <navigation-rule> 
+  	<from-view-id>/jsp/forumRubrikLista.xhtml</from-view-id>
+  	<navigation-case> 
+      <from-outcome>success</from-outcome> 
+      <to-view-id>/jsp/forumRubrikLista.xhtml</to-view-id> 
+    </navigation-case>
+  </navigation-rule>
+  
+  <navigation-rule> 
+  	<from-view-id>/jsp/medlemLista.jsp</from-view-id>
+  	<navigation-case> 
+      <from-outcome>success</from-outcome> 
+      <to-view-id>/jsp/medlemLista.jsp</to-view-id> 
+    </navigation-case>
+  </navigation-rule>
+  
+  <navigation-rule> 
+  	<from-view-id>/jsp/arrangemangLista.jsp</from-view-id>
+  	<navigation-case> 
+      <from-outcome>success</from-outcome> 
+      <to-view-id>/jsp/arrangemangLista.jsp</to-view-id> 
+    </navigation-case>
+  </navigation-rule>
+  
+  <navigation-rule> 
+  	<from-view-id>/jsp/forumRubrikLista.jsp</from-view-id>
+  	<navigation-case> 
+      <from-outcome>success</from-outcome> 
+      <to-view-id>/jsp/forumRubrikLista.jsp</to-view-id> 
+    </navigation-case>
+  </navigation-rule>
+    
+
+</faces-config>

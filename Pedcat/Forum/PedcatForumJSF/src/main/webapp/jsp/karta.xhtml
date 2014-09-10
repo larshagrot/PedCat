@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui" >
+
+    <f:view>
+        <h:head>
+            <META NAME="AUTHOR" CONTENT="Lars Hagrot Pedcat"/>
+            <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"/>
+            <META HTTP-EQUIV="EXPIRES" CONTENT="0"/>
+            <META NAME="KEYWORDS" CONTENT="Sundbybergs IK Tjejskidan"/>
+            <script src="http://maps.google.com/maps/api/js?sensor=false"
+type="text/javascript"></script>
+            <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/forum.css" type="text/css"></link>
+            <script src="#{facesContext.externalContext.requestContextPath}/script/forum.js"></script>
+        </h:head>
+        <h:body style="background-color:#EFEFEF;padding:0 0 0 0;">
+        <h:form>
+					
+	<p:growl id="messages" showDetail="true" life="2000" />
+
+	<p:gmap center="59.490663,18.094139" zoom="15" type="HYBRID" 
+		style="width:100%;height:700px" 
+	        model="#{kartaJSFBean}" 
+                overlaySelectListener="#{kartaJSFBean.onMarkerSelect}">
+		
+		<p:gmapInfoWindow>
+			<p:outputPanel style="text-align:center;display:block;margin:auto:">
+				
+				<p:graphicImage value="/images/#{kartaJSFBean.marker.data}"/>
+				<br />
+				<h:outputText value="#{kartaJSFBean.marker.title}" />
+					
+			</p:outputPanel>
+			
+		</p:gmapInfoWindow>
+	</p:gmap>
+
+	
+        </h:form>
+		
+        </h:body>
+    </f:view>
+</html>
